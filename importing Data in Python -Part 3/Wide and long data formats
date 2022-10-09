@@ -1,0 +1,167 @@
+
+Q1 : 
+ solution : 
+ 
+Q2 : 
+#Set the index of fifa_players to be the name column and assign it to fifa_transpose.
+solution : 
+ # Set name as index
+fifa_transpose = fifa_players.set_index('name')
+
+# Print fifa_transpose
+print(fifa_transpose)
+
+#Modify the code to select only the columns height and weight from the fifa_players DataFrame.
+Solution : 
+# Modify the DataFrame to keep only height and weight columns
+fifa_transpose = fifa_players.set_index('name')[['height','weight']]
+
+# Print fifa_transpose
+print(fifa_transpose) 
+Finally, transpose the fifa_players DataFrame so that the rows become columns and the columns become rows. 
+solution : 
+# Change the DataFrame so rows become columns and vice versa
+fifa_transpose = fifa_players.set_index('name')[['height', 'weight']].transpose()
+
+# Print fifa_transpose
+print(fifa_transpose)
+Q3 : 
+Pivot fifa_players to get a DataFrame with overall scores indexed by name, and identified by movement in the columns.
+solution : 
+# Pivot fifa_players to get overall scores indexed by name and identified by movement
+fifa_overall = fifa_players.pivot(index='name', columns="movement", values="overall")
+
+# Print fifa_overall
+print(fifa_overall)
+ Pivot fifa_players to get a DataFrame with attacking scores indexed by name, and identified by movement in the columns.
+  solution : 
+   # Pivot fifa_players to get attacking scores indexed by name and identified by movement
+fifa_attacking = fifa_players.pivot(index='name', columns='movement', values='attacking')
+
+# Print fifa_attacking
+print(fifa_attacking) 
+Use .pivot() on fifa_players to get overall scores indexed by movement, and identified by name in the columns. 
+ solution : 
+ # Use the pivot method to get overall scores indexed by movement and identified by name
+fifa_names = fifa_players.pivot(index='movement' , columns ='name' , values='overall')
+
+# Print fifa_names
+print(fifa_names)
+Q4 : 
+Pivot fifa_players to get overall and attacking scores indexed by name, and identified by movement in the columns. 
+solution : 
+# Pivot fifa_players to get overall and attacking scores indexed by name and identified by movement
+fifa_over_attack = fifa_players.pivot(index='name', 
+                                     columns='movement', 
+                                     values=['overall', 'attacking'])
+
+# Print fifa_over_attack
+print(fifa_over_attack)
+Use the .pivot() method on fifa_players to get all the scores indexed by name,and identified by movement in the columns.
+ solution : 
+ # Use pivot method to get all the scores index by name and identified by movement
+fifa_all = fifa_players.pivot(index='name' , columns='movement')
+
+# Print fifa_over_attack
+print(fifa_all)
+ Q 5 : 
+ Drop the fifth row of the fifa_players DataFrame.
+ solution : 
+# Drop the fifth row to delete all repeated rows
+fifa_no_rep = fifa_players.drop(4, axis=0)
+
+# Print fifa_pivot
+print(fifa_no_rep)
+Pivot fifa_players to get all the scores indexed by name, and identified by movement in the columns. 
+solution: 
+# Drop the fifth row to delete all repeated rows
+fifa_no_rep = fifa_players.drop(4, axis=0)
+
+# Pivot fifa players to get all scores by name and movement
+fifa_pivot = fifa_no_rep.pivot(index='name', columns='movement') 
+
+# Print fifa_pivot
+print(fifa_pivot)  
+Q6 : 
+Discard the fifth row of the fifa_players DataFrame.
+Use .pivot() on fifa_players to get all the scores indexed by name, and identified by movement in the columns.
+Use a pivot table to show the mean of all scores by name and movement, setting name as index. 
+solution : 
+# Discard the fifth row to delete all repeated rows
+fifa_drop = fifa_players.drop(4,axis=0)
+
+# Use pivot method to get all scores by name and movement
+fifa_pivot = fifa_drop.pivot(index='name', columns='movement') 
+
+# Print fifa_pivot
+print(fifa_pivot)  
+
+# Use pivot table to get all scores by name and movement
+fifa_pivot_table = fifa_players.pivot_table(index='name', 
+                                     columns='movement', 
+                                     aggfunc="mean")
+# Print fifa_pivot_table
+print(fifa_pivot_table)
+ Q7 : 
+ Use a pivot table to show the mean age of players in fifa_players by club and nationality. Set nationality as the index.
+ solution : 
+ # Use pivot table to display mean age of players by club and nationality 
+mean_age_fifa = fifa_players.pivot_table(index='nationality', 
+                                  columns='club', 
+                                  values='age', 
+                                  aggfunc="mean")
+
+# Print mean_age_fifa
+print(mean_age_fifa) 
+Use a pivot table to show the maximum height of any player by club and nationality, setting nationality as the index. 
+ solution : 
+ # Use pivot table to display max height of any player by club and nationality
+tall_players_fifa = fifa_players.pivot_table(index='nationality', 
+                                     columns='club', 
+                                      values='height', 
+                                      aggfunc="max")
+
+# Print tall_players_fifa
+print(tall_players_fifa)
+ Define the DataFrame players_country that shows the player count by club and nationality and get the total count.
+  solution : 
+  # Use pivot table to show the count of players by club and nationality and the total count
+players_country = fifa_players.pivot_table(
+                                    index='nationality', 
+                                    values='name',
+                                    columns='club',
+                                    aggfunc='count', 
+                                    margins=True)
+
+# Print players_country
+print(players_country)
+ Q 8 : 
+ Use a pivot table to get all the values in the year column of the fifa_players DataFrame, setting nationality and club as index.
+  solution : 
+# Define a pivot table to get the characteristic by nationality and club
+fifa_mean = fifa_players.pivot_table(index=['nationality','club'], 
+                                     columns='year')
+
+# Print fifa_mean
+print(fifa_mean)
+Pass the appropriate function to .pivot_table() to show the maximum values of the year columns.
+ solution : 
+ # Set the appropriate argument to show the maximum values
+fifa_mean = fifa_players.pivot_table(index=['nationality', 'club'], 
+                                     columns='year', 
+                                     , aggfunc="max")
+
+# Print fifa_mean
+print(fifa_mean) 
+Set the appropriate argument in .pivot_table() to get the maximum for each row and column.
+solution : 
+
+# Set the argument to get the maximum for each row and column
+fifa_mean = fifa_players.pivot_table(index=['nationality', 'club'], 
+                                     columns='year', 
+                                     aggfunc='max', 
+                                     margins=True)
+
+# Print fifa_mean
+print(fifa_mean)
+
